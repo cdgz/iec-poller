@@ -1,9 +1,10 @@
 #! /bin/sh
 
 set -x
-QUOTA=`curl -s http://www.cic.gc.ca/english/work/iec/data.xml | grep -A 4 'location="France" category="wh"' | grep "<quota>0</quota>"`
-PLACES=`curl -s http://www.cic.gc.ca/english/work/iec/data.xml | grep -A 4 'location="France" category="wh"' | grep "<places>0</places>"`
-STATUS=`curl -s http://www.cic.gc.ca/english/work/iec/data.xml | grep -A 4 'location="France" category="wh"' | grep "<status>This category is now closed.</status>"`
+curl -s http://www.cic.gc.ca/english/work/iec/data.xml -o data
+QUOTA=`cat data | grep -A 4 'location="France" category="wh"' | grep "<quota>0</quota>"`
+PLACES=`cat data | grep -A 4 'location="France" category="wh"' | grep "<places>0</places>"`
+STATUS=`cat data | grep -A 4 'location="France" category="wh"' | grep "<status>This category is now closed.</status>"`
 KOMPASS1=`curl -s "https://kompass-iec-eic.international.gc.ca/registration-inscription?regionCode=FR" | grep '<h2>Object moved to <a href="/iecRegistrationClosed-eicInscriptionsFermees?regionCode=FR">here</a>.</h2>'`
 KOMPASS2=`curl -s "https://kompass-iec-eic.international.gc.ca/iecRegistrationClosed-eicInscriptionsFermees?regionCode=FR" | grep "The 2014 International Experience Canada (IEC) initiative with France is currently closed, and will re-open shortly.  We encourage you to check the updates on our website regularly"`
 
