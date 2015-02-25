@@ -11,6 +11,6 @@ KOMPASS5=`curl -s "http://kompass-2015-iec-eic.international.gc.ca/sign_in-conne
 
 if ! test -n "$QUOTA" || ! test -n "$PLACES" || ! test -n "$STATUS" || ! test -n "$KOMPASS1" || \
     ! test -n "$KOMPASS4" || ! test -n "$KOMPASS5" ; then
-    curl -F "token=$PUSH_TOKEN" -F "user=$PUSH_USER" -F "message=IEC poller says hi" http://api.pushover.net/1/messages
+    curl -F "token=$PUSH_TOKEN" -F "user=$PUSH_USER" -F "message=IEC poll #$BUILD_NUMBER says hi" http://api.pushover.net/1/messages
     exit 1;
 fi
