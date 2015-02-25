@@ -6,13 +6,11 @@ QUOTA=`cat data | grep -A 4 'location="France" category="wh"' | grep "<quota>0</
 PLACES=`cat data | grep -A 4 'location="France" category="wh"' | grep "<places>0</places>"`
 STATUS=`cat data | grep -A 4 'location="France" category="wh"' | grep "<status>This category is now closed.</status>"`
 KOMPASS1=`curl -s "https://kompass-iec-eic.international.gc.ca/registration-inscription?regionCode=FR" | grep '<h2>Object moved to <a href="/iecRegistrationClosed-eicInscriptionsFermees?regionCode=FR">here</a>.</h2>'`
-KOMPASS2=`curl -s "https://kompass-iec-eic.international.gc.ca/iecRegistrationClosed-eicInscriptionsFermees?regionCode=FR" | grep "The 2014 International Experience Canada (IEC) initiative with France is currently closed, and will re-open shortly.  We encourage you to check the updates on our website regularly"`
-KOMPASS3=`curl -s "https://kompass-iec-eic.international.gc.ca/iecRegistrationClosed-eicInscriptionsFermees?regionCode=FR" | grep "We thank you for your interest in International Experience Canada."`
 KOMPASS4=`curl -s "https://kompass-iec-eic.international.gc.ca/iecRegistrationClosed-eicInscriptionsFermees?regionCode=FR" | grep '<span id="lblRegClosedThanks">The 2014 International Experience Canada (IEC) initiative is now closed. <BR/><BR/>Visit <a href="http://www.cic.gc.ca/english/work/iec/index.asp">http://www.cic.gc.ca/francais/travailler/eic/index.asp</a> learn about the 2015 International Experience Canada (IEC) initiative.</span>'`
 KOMPASS5=`curl -s "http://kompass-2015-iec-eic.international.gc.ca/sign_in-connexion?regionCode=FR" | grep '<h2>Object moved to <a href="/IECRegistrationClosed.aspx?regionCode=FR">here</a>.</h2>'`
 
 if ! test -n "$QUOTA" || ! test -n "$PLACES" || ! test -n "$STATUS" || ! test -n "$KOMPASS1" || \
-    ( ! test -n "$KOMPASS2" && ! test -n "$KOMPASS3" && ! test -n "$KOMPASS4" ) || ! test -n "$KOMPASS5" ; then
+    ! test -n "$KOMPASS4" || ! test -n "$KOMPASS5" ; then
     curl -F "token=$PUSH_TOKEN" -F "user=$PUSH_USER" -F "message=IEC poller says hi" http://api.pushover.net/1/messages
     exit 1;
 fi
