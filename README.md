@@ -13,3 +13,17 @@ Returns 0 if there is no free places. To be inserted in any available 24/365 mac
 - RPi at your home
 - spare Jenkins slave at work
 - "free" 2-months [DO](https://www.digitalocean.com/help/referral-program/) VM
+
+Tips
+----
+
+To have push notifications, you can use services like [pushover](http://pushover.net) or [pushbullet](http://pushbullet.com).
+They both have free 7-day trials, which should be enough for hot period.
+
+If you use 2nd hosting option (Jenkins slave at work), check out [ngrok](http://ngrok.com)
+service to escape corporate firewall. Just do:
+
+    ngrok -log=stdout $JENKINS_PORT > /dev/null &
+
+on Jenkins node and bookmark the URL on smartphone. Now you are free to go home and able to
+correct job parameters (or disable it) remotely
