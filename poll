@@ -6,7 +6,9 @@ QUOTA=`cat data | grep -A 4 'location="France" category="wh"' | grep "<quota>0</
 PLACES=`cat data | grep -A 4 'location="France" category="wh"' | grep "<places>0</places>"`
 STATUS=`cat data | grep -A 4 'location="France" category="wh"' | grep "<status>This category is now closed.</status>"`
 PARIS_TIME=`curl -s "http://www.cic.gc.ca/english/work/iec/index.asp?country=fr&cat=wh" | grep "Paris time"`
+WILL_OPEN=`curl -s "http://www.cic.gc.ca/english/work/iec/index.asp?country=fr&cat=wh" | grep "will open"`
 
-if ! test -n "$QUOTA" || ! test -n "$PLACES" || ! test -n "$STATUS" || test -n "$PARIS_TIME"; then
+if ! test -n "$QUOTA" || ! test -n "$PLACES" || ! test -n "$STATUS" || \
+    test -n "$PARIS_TIME" || test -n "$WILL_OPEN" ; then
     exit 1;
 fi
