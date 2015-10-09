@@ -17,7 +17,8 @@ Returns 0 if there is no free places. To be inserted in any available 24/365 mac
 Tips
 ----
 
-To have push notifications, you can use services like [pushover](http://pushover.net) or [pushbullet](http://pushbullet.com).
+To get notified in time, the best solution is [Telegram bots](https://telegram.org/blog/bot-revolution). 
+You can also use services like [pushover](http://pushover.net) or [pushbullet](http://pushbullet.com).
 They both have free 7-day trials, which should be enough for hot period.
 
 If you use 2nd hosting option (CI instance), check out [ngrok](http://ngrok.com)
